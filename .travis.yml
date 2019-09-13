@@ -1,0 +1,10 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+before_install:
+  - docker build -t nsmith/docker-ci -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true nsmith/docker-ci npm run test
